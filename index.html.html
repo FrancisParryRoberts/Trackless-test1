@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+       TRACKLESS WEBSITE - FINAL HANDOFF VERSION
+       This version is organised for readability and easy editing.
+
+       INCLUDED:
+       1) Clean page structure
+       2) Grouped CSS with headings
+       3) Google Analytics (GA4)
+       4) Tracking for buttons, social links, and contact form submits
+       5) Basic SEO / social sharing meta tags
+       6) Privacy / cookies notice section
+       7) Existing image file names preserved
+
+       NOTE:
+       - Replace placeholder URLs (YOUR-REAL-URL-HERE) when the final domain is known.
+       - Replace the social preview image URL with a final absolute URL once live.
+       - The contact form still needs to be connected to a real backend or booking platform.
+       ========================================================= -->
+
+  <!-- ================= BASIC PAGE SETUP ================= -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trackless | Meditative Expeditions in Snowdonia</title>
+  <meta name="description" content="Meditative walking expeditions for men in Snowdonia. Step away from the noise, reconnect with purpose, and experience a guided journey into nature." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://YOUR-REAL-URL-HERE/" />
+
+  <!-- ================= OPEN GRAPH / SOCIAL SHARING ================= -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Trackless | Meditative Expeditions in Snowdonia" />
+  <meta property="og:description" content="Step away from the noise. Walk in stillness. Rediscover purpose." />
+  <meta property="og:url" content="https://YOUR-REAL-URL-HERE/" />
+  <meta property="og:image" content="https://YOUR-REAL-URL-HERE/trackless-fog.jpg" />
+  <meta property="og:site_name" content="Trackless" />
+
+  <!-- ================= TWITTER / X SHARING ================= -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trackless | Meditative Expeditions in Snowdonia" />
+  <meta name="twitter:description" content="Step away from the noise. Walk in stillness. Rediscover purpose." />
+  <meta name="twitter:image" content="https://YOUR-REAL-URL-HERE/trackless-fog.jpg" />
+
+  <!-- ================= GOOGLE ANALYTICS ================= -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF3R2L4GYH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VF3R2L4GYH');
+  </script>
+
+  <style>
+    /* ====================================================
+       1. ROOT VARIABLES
+       ==================================================== */
+    :root {
+      --brand-orange: #f26423;
+      --page-bg: #0f172a;
+      --page-bg-alt: #0b1220;
+      --text-main: #ffffff;
+      --text-soft: rgba(255, 255, 255, 0.85);
+      --text-muted: rgba(255, 255, 255, 0.72);
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --panel-soft: rgba(255, 255, 255, 0.03);
+      --btn-radius: 9999px;
+      --content-width: 1100px;
+      --hero-min-height: 640px;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    /* ====================================================
+       2. RESET / GLOBAL DEFAULTS
+       ==================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--page-bg);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ====================================================
+       3. SHARED ANIMATIONS
+       ==================================================== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInOnly {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ====================================================
+       4. SHARED LAYOUT HELPERS
+       ==================================================== */
+    .section {
+      padding: 4.5rem min(5vw, 3.5rem);
+      background: var(--page-bg);
+    }
+
+    .section:nth-of-type(even) {
+      background: var(--page-bg-alt);
+    }
+
+    .section-inner {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+    }
+
+    .section h2,
+    .section h3 {
+      text-align: center;
+    }
+
+    .section h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .section p {
+      max-width: 60rem;
+      margin: 0 auto 1rem;
+      line-height: 1.7;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .section a {
+      color: var(--brand-orange);
+      text-decoration: none;
+    }
+
+    .section a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====================================================
+       5. BUTTONS
+       ==================================================== */
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.8rem 1.7rem;
+      border-radius: var(--btn-radius);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .btn-primary {
+      background: var(--brand-orange);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      box-shadow: 0 20px 40px rgba(242, 100, 35, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      font-weight: 500;
+      backdrop-filter: blur(6px);
+    }
+
+    .book-btn-wrap {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .book-button {
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    /* ====================================================
+       6. HERO SECTION
+       ==================================================== */
+    .hero {
+      position: relative;
+      min-height: var(--hero-min-height);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--text-main);
+      background: #000;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("trackless-fog.jpg") center center / cover no-repeat;
+      filter: brightness(1.08) contrast(1.04) saturate(1);
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.62) 0%,
+          rgba(0, 0, 0, 0.20) 45%,
+          rgba(0, 0, 0, 0.68) 100%
+        );
+      z-index: 1;
+    }
+
+    .hero-shell {
+      position: relative;
+      z-index: 2;
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      padding: 2rem min(5vw, 3rem);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease-out both;
+    }
+
+    .logo img {
+      width: min(260px, 46vw);
+      height: auto;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin-left: auto;
+      text-align: center;
+      animation: fadeInOnly 1s ease-out 0.2s both;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 6vw, 3.5rem);
+      line-height: 1.08;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease-out 0.3s both;
+    }
+
+    /* ====================================================
+       7. BANNER WRAPPER FOR CHALLENGE + DETOX
+       ==================================================== */
+    .trackless-banner-block {
+      position: relative;
+      background: url("trackless_victory_logo.jpg") center center / cover no-repeat, var(--page-bg);
+    }
+
+    .trackless-banner-block::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 12, 20, 0.78);
+      backdrop-filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .trackless-banner-block .section {
+      position: relative;
+      background: transparent;
+    }
+
+    .trackless-banner-block .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ====================================================
+       8. THREEFOLD JOURNEY SECTION
+       ==================================================== */
+    .threefold {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 1.75rem;
+      align-items: stretch;
+    }
+
+    .threefold-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 650px;
+      padding: 1.5rem 1.2rem 1.7rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 1rem;
+    }
+
+    .threefold-item h3 {
+      margin-bottom: 0.6rem;
+    }
+
+    .threefold-image {
+      margin-top: 1rem;
+      height: 360px;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .threefold-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .threefold-image img.return-image {
+      filter: saturate(1.5) hue-rotate(-10deg) brightness(1.05);
+      object-position: 50% 0%;
+    }
+
+    /* ====================================================
+       9. TEAM SECTION
+       ==================================================== */
+    .team-photos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .person {
+      text-align: center;
+    }
+
+    .person img {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 0.5rem;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      object-position: 50% 7.5%;
+    }
+
+    .caption {
+      text-align: center;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* ====================================================
+       10. RETREAT CARDS
+       ==================================================== */
+    .retreat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .retreat-card {
+      padding: 1.1rem 1rem 1.4rem;
+      border-radius: 1rem;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .retreat-card img {
+      width: 100%;
+      height: 140px;
+      margin-bottom: 0.7rem;
+      border-radius: 0.6rem;
+      object-fit: cover;
+    }
+
+    .retreat-card h3 {
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .retreat-card p {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: justify;
+    }
+
+    /* ====================================================
+       11. GALLERY
+       ==================================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      min-height: 150px;
+      border-radius: 0.7rem;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* ====================================================
+       12. LEGACY / SOCIAL BANNER
+       ==================================================== */
+    .legacy {
+      position: relative;
+      min-height: 240px;
+      background: url("trackless_victory_logo.jpg") center center / cover no-repeat, var(--page-bg);
+    }
+
+    .legacy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .legacy-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .legacy-social {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .legacy-text {
+      text-align: center;
+    }
+
+    .social-link img {
+      width: 36px;
+      height: 36px;
+      opacity: 0.75;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .social-link:hover img {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* ====================================================
+       13. FAQ
+       ==================================================== */
+    .faq-item {
+      max-width: 60rem;
+      margin: 0 auto 1.3rem;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 0.4rem;
+    }
+
+    /* ====================================================
+       14. CONTACT FORM
+       ==================================================== */
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+      max-width: 520px;
+      margin: 1.5rem auto 0;
+    }
+
+    .contact-form label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.7rem 0.8rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.25);
+      color: #fff;
+      font: inherit;
+    }
+
+    .contact-form button {
+      justify-self: start;
+    }
+
+    /* ====================================================
+       15. PRIVACY / SITE NOTE
+       ==================================================== */
+    .site-note {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 52rem;
+      margin: 1rem auto 0;
+      text-align: center;
+    }
+
+    .site-note a {
+      color: var(--brand-orange);
+    }
+
+    /* ====================================================
+       16. FOOTER
+       ==================================================== */
+    .footer {
+      padding: 2rem 1.5rem 3rem;
+      background: #09111d;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .footer-inner {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--brand-orange);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====================================================
+       17. RESPONSIVE ADJUSTMENTS
+       ==================================================== */
+    @media (max-width: 900px) {
+      .hero {
+        height: auto;
+      }
+
+      .hero-inner {
+        margin-left: 0;
+      }
+
+      .threefold {
+        grid-template-columns: 1fr;
+      }
+
+      .threefold-item {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-shell {
+        padding-top: 1.5rem;
+        padding-bottom: 3rem;
+      }
+
+      .topbar {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-inner {
+        text-align: left;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+      }
+
+      .legacy-social {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .retreat-card {
+        text-align: left;
+      }
+
+      .contact-form button {
+        justify-self: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====================================================
+       HERO
+       ==================================================== -->
+  <section class="hero">
+    <div class="hero-shell">
+      <header class="topbar">
+        <div class="logo">
+          <img src="trackless-logo.png" alt="Trackless logo" />
+        </div>
+      </header>
+
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          Meditative walks for men in the wild beauty of Snowdonia.
+        </h1>
+        <p class="hero-subtitle">
+          Step away from the noise. Walk in stillness. Rediscover purpose.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#book" class="btn-primary" data-analytics="book_now_hero">
+            Book now
+          </a>
+
+          <a href="#contact" class="btn-secondary" data-analytics="get_in_touch_hero">
+            Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       CHALLENGE + DETOX BANNER WRAPPER
+       ==================================================== -->
+  <div class="trackless-banner-block">
+    <section class="section" id="challenge">
+      <div class="section-inner">
+        <h2>The challenge</h2>
+
+        <p>
+          So you’ve done what they said but there’s still a nagging sense that life could offer more?
+          Perhaps you've already sat on the cushion looking for answers. Maybe you know that you need
+          a reset — some fresh perspective?
+        </p>
+
+        <p>
+          Based on research by David Strayer and years of our own experience we realised that what a
+          lot of men today need is to rediscover a sense of meaning and purpose in their often busy and
+          stressful lives – and that an immersive journey in nature of only a few days can help provide that.
+        </p>
+
+        <p>
+          But this is not just any old journey, not just a fast-paced hike to the top of a mountain and back –
+          here we deliver a structured and supported experience based on the timeless teachings of Buddhism,
+          modern psychology and anthropological studies of quest and ordeal in defining manhood; presented
+          in a modern way through our own lived appreciation of these things.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="detox">
+      <div class="section-inner">
+        <h2>Not just a digital detox!</h2>
+
+        <p>
+          On a Trackless expedition we will guide you through an experience which mirrors an age-old
+          threefold process present in many traditions and cultures but often lost to modern men. Firstly,
+          we invite you to renounce whatever is going on in your life right now – leave the city, leave your
+          job, leave your normal patterns and habits behind for just a few days. At the end of the first
+          evening we ritually and symbolically renounce the world by giving up our electronic devices for the weekend.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ====================================================
+       THREEFOLD JOURNEY
+       ==================================================== -->
+  <section class="section" id="process">
+    <div class="section-inner">
+      <div class="threefold">
+        <div class="threefold-item">
+          <div>
+            <h3>Renunciation</h3>
+            <p>
+              The following day we will rise early and give instructions on how to deepen your practice
+              of meditation and bring that awareness into movement as we walk. This first day will usually
+              involve a long challenging hike, often summiting a major mountain peak, interspersed with
+              periods of silence and some seated meditation and reflection.
+            </p>
+          </div>
+
+          <div class="threefold-image">
+            <img src="renounce.jpg" alt="Renunciation" />
+          </div>
+        </div>
+
+        <div class="threefold-item">
+          <div>
+            <h3>Quest</h3>
+            <p>
+              Day two we will walk again, but this time as well as deepening our meditative awareness we
+              will use the time to develop and connect with our personal quest. After lunch we will fast
+              and hike to a remote mountain top or woodland and spend the night alone with only a bivvy
+              bag to separate us from the elements.
+            </p>
+          </div>
+
+          <div class="threefold-image">
+            <img src="gal4.jpg" alt="Quest" />
+          </div>
+        </div>
+
+        <div class="threefold-item">
+          <div>
+            <h3>Return</h3>
+            <p>
+              Day three – after a night alone in the wilderness we gather for a shorter, mainly silent
+              walk back to base camp where we will break our fast and come together to reflect on the
+              weekend, discussing our experiences and how we might integrate them back into our daily lives.
+            </p>
+          </div>
+
+          <div class="threefold-image">
+            <img class="return-image" src="return2.png" alt="Return" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       THE TEAM
+       ==================================================== -->
+  <section class="section" id="team">
+    <div class="section-inner">
+      <h2>The team</h2>
+
+      <p>
+        Alongside a rotating support team of cooks and meditation teachers you'll be led by two qualified
+        mountain leaders, Amalavajra, an ordained Buddhist from the
+        <a href="https://westlondonbuddhistcentre.com/" target="_blank" rel="noopener">West London Buddhist Centre</a>,
+        and Francis Parry Roberts, who lives and works in North Wales.
+      </p>
+
+      <div class="team-photos">
+        <div class="person">
+          <img src="Amalavajra.jpg" alt="Amalavajra" />
+          <p class="caption">Amalavajra</p>
+        </div>
+
+        <div class="person">
+          <img src="Francis.jpg" alt="Francis" />
+          <p class="caption">Francis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       DATES AND BOOKING
+       ==================================================== -->
+  <section class="section" id="book">
+    <div class="section-inner">
+      <h2>2026 Dates and Booking</h2>
+
+      <p>
+        Groups are small, places limited. Please get in touch here or on social media, or book directly
+        using the form below.
+      </p>
+
+      <div class="retreat-grid">
+        <article class="retreat-card">
+          <img src="may.jpg" alt="May retreat" />
+          <h3>May 7–10, 2026</h3>
+          <p>
+            Early-season Snowdonia, spring in the secret places. The summer yet to be.
+          </p>
+        </article>
+
+        <article class="retreat-card">
+          <img src="june.jpg" alt="June retreat" />
+          <h3>June 18–21, 2026</h3>
+          <p>
+            Longer days for walking, deep silence, the high Welsh mountains calling.
+          </p>
+        </article>
+
+        <article class="retreat-card">
+          <img src="sep.jpg" alt="September retreat" />
+          <h3>September 24–27, 2026</h3>
+          <p>
+            Autumn comes, a reflective pace, space to integrate the year.
+          </p>
+        </article>
+      </div>
+
+      <p>
+        We ask a £100 deposit on booking to make sure we don’t lose money ourselves, and the rest —
+        following the age-old Buddhist tradition — is up to you. A further contribution covers the
+        basic cost of running the expedition and a larger donation helps us offer bursary places.
+      </p>
+
+      <div class="book-btn-wrap">
+        <a class="btn-primary book-button" href="#contact" data-analytics="book_a_place_button">
+          Book a place
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       GALLERY
+       ==================================================== -->
+  <section class="section" id="gallery">
+    <div class="section-inner">
+      <h2>Gallery & testimonials</h2>
+
+      <p>
+        Scenes from previous Trackless weekends. UNDER DEVELOPMENT more images, no repeats, text testimonials,
+        maybe embed video?
+      </p>
+
+      <div class="gallery-grid">
+        <img src="gal1.jpg" alt="Gallery image 1" />
+        <img src="gal2.jpg" alt="Gallery image 2" />
+        <img src="gal3.jpg" alt="Gallery image 3" />
+        <img src="gal4.jpg" alt="Gallery image 4" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       LEGACY / SOCIAL BANNER
+       ==================================================== -->
+  <section class="legacy">
+    <div class="legacy-inner legacy-social">
+      <a
+        href="https://www.facebook.com/profile.php?id=61574862296570"
+        target="_blank"
+        rel="noopener"
+        aria-label="Trackless on Facebook"
+        class="social-link"
+        data-analytics="facebook_click"
+      >
+        <img src="facebook.svg" alt="" />
+      </a>
+
+      <div class="legacy-text">
+        <h2>Trackless</h2>
+        <p>Meditative Expeditions</p>
+      </div>
+
+      <a
+        href="https://www.instagram.com/tracklessmeditativeexpeditions/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Trackless on Instagram"
+        class="social-link"
+        data-analytics="instagram_click"
+      >
+        <img src="instagram.svg" alt="" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       FAQ
+       ==================================================== -->
+  <section class="section" id="faq">
+    <div class="section-inner">
+      <h2>FAQs</h2>
+
+      <div class="faq-item">
+        <h3>How hard is this?</h3>
+        <p>
+          This event is challenging, physically and mentally — it’s supposed to be. Immersion in nature,
+          exposure to the elements and overcoming fear and other negative mental states are part of what
+          the Trackless experience is. You should be able to walk about 12–15 miles a day carrying a
+          backpack with everything you need. We will make a dynamic assessment of the group and respond accordingly.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What do I need to bring?</h3>
+        <p>
+          A full kit list is supplied on enquiry and much of the gear is available on loan, or we can
+          purchase for you with discounts from local stores.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why only men?</h3>
+        <p>
+          Think of it as living like a monk for three days. Trackless is inspired by the life and teachings
+          of the Buddha and his immediate disciples who were essentially communities of semi-itinerant monks
+          and nuns. Here we’re creating a clear, contained men’s space for this work.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why “Trackless”?</h3>
+        <p>
+          ‘Trackless’ is an epithet of the Buddha, with a rich range of interpretations and associations
+          including the idea that he leaves no karmic trail, cannot be tracked by evil, and there is no basis,
+          or footing, for suffering in his actions. Ultimately he encapsulates the ideal to which Buddhists
+          aspire: a life lived with creative, compassionate energy; rather than one reacted to out of habit,
+          pain and fear.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How much does it cost?</h3>
+        <p>
+          We ask a £100 deposit on booking. The rest is on a donation basis, following the Buddhist tradition.
+          A further amount covers basic costs, and a higher donation helps us offer some bursary places —
+          please get in touch if that applies to you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       CONTACT
+       This front-end form can later be connected to:
+       - Ticket Tailor / Ticket Seller
+       - Formspree / Netlify Forms
+       - a custom backend
+       ==================================================== -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <h2>Get in touch</h2>
+
+      <p>
+        Tell us which date you’re interested in and we’ll get back to you with joining details, kit list and travel info.
+      </p>
+
+      <form class="contact-form" id="contact-form">
+        <div>
+          <label for="name">Your name</label>
+          <input id="name" type="text" name="name" />
+        </div>
+
+        <div>
+          <label for="email">Your email</label>
+          <input id="email" type="email" name="email" />
+        </div>
+
+        <div>
+          <label for="retreat">Which retreat?</label>
+          <select id="retreat" name="retreat">
+            <option value="">Select a date…</option>
+            <option>May 7–10, 2026</option>
+            <option>June 18–21, 2026</option>
+            <option>September 24–27, 2026</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+
+        <button class="btn-primary" type="submit" data-analytics="contact_form_submit_button">
+          Send
+        </button>
+      </form>
+
+      <p class="site-note">
+        We use website analytics to understand how people use this site and improve the experience.
+        Please add a full privacy policy and cookie consent solution before public launch if your organisation requires one.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; Trackless Meditative Expeditions</p>
+      <div class="footer-links">
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQs</a>
+        <a href="#privacy">Privacy note</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       PRIVACY NOTE SECTION
+       This is a simple placeholder section.
+       Replace or expand it with your organisation's final wording.
+       ==================================================== -->
+  <section class="section" id="privacy">
+    <div class="section-inner">
+      <h2>Privacy note</h2>
+      <p>
+        This website may use analytics tools to understand visits, page views, and general engagement
+        so we can improve the site and our communications.
+      </p>
+      <p>
+        If you contact us through a form or booking system, the information you provide will only be used
+        for responding to your enquiry or managing your booking, in line with the policies of the service used.
+      </p>
+      <p>
+        A full privacy policy and any required cookie consent tools should be added before public launch.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       ANALYTICS EVENT TRACKING
+       HOW IT WORKS:
+       - Any element with data-analytics="something_here" sends a click event
+       - The contact form sends a submit event
+       ==================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('[data-analytics]').forEach(function (element) {
+        element.addEventListener('click', function () {
+          const label = element.getAttribute('data-analytics');
+
+          if (typeof gtag === 'function') {
+            gtag('event', 'click', {
+              event_category: 'engagement',
+              event_label: label
+            });
+          }
+        });
+      });
+
+      const contactForm = document.getElementById('contact-form');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function () {
+          if (typeof gtag === 'function') {
+            gtag('event', 'form_submission', {
+              event_category: 'contact',
+              event_label: 'contact_form'
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
