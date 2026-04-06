@@ -1093,5 +1093,52 @@
       }
     });
   </script>
+  <script>
+  // ===============================
+  // SCROLL TRACKING
+  // ===============================
+  let scrollMarks = [25, 50, 75, 100];
+  let scrollTracked = [];
+
+  window.addEventListener('scroll', function () {
+    let scrollTop = window.scrollY;
+    let docHeight = document.body.scrollHeight - window.innerHeight;
+    let scrollPercent = (scrollTop / docHeight) * 100;
+
+    scrollMarks.forEach(function(mark) {
+      if (scrollPercent >= mark && !scrollTracked.includes(mark)) {
+        scrollTracked.push(mark);
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'scroll_depth', {
+            event_category: 'engagement',
+            event_label: mark + '%'
+          });
+        }
+      }
+    });
+  });
+
+  // ===============================
+  // SECTION VIEW TRACKING
+  // ===============================
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id || 'unknown_section';
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'section_view', {
+            event_category: 'engagement',
+            event_label: id
+          });
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(section => observer.observe(section));
+</script>
 </body>
 </html>
