@@ -666,11 +666,11 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#book" class="btn-primary" data-analytics="book_now_hero">
+          <a href="#book" class="btn-primary" data-analytics="book_now_click">
             Book now
           </a>
 
-          <a href="#contact" class="btn-secondary" data-analytics="get_in_touch_hero">
+          <a href="#contact" class="btn-secondary" data-analytics="get_in_touch_click">
             Get in touch
           </a>
         </div>
@@ -851,7 +851,7 @@
       </p>
 
       <div class="book-btn-wrap">
-        <a class="btn-primary book-button" href="#contact" data-analytics="book_a_place_button">
+        <a class="btn-primary book-button" href="#contact" data-analytics="book_a_place_click">
           Book a place
         </a>
       </div>
@@ -1064,81 +1064,99 @@
        - Any element with data-analytics="something_here" sends a click event
        - The contact form sends a submit event
        ==================================================== -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('[data-analytics]').forEach(function (element) {
-        element.addEventListener('click', function () {
-          const label = element.getAttribute('data-analytics');
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    /* ====================================================
+       1. CLICK TRACKING WITH CLEAR EVENT NAMES
+       Any element with data-analytics="event_name_here"
+       will send that exact event name to GA4.
+       ==================================================== */
+    document.querySelectorAll('[data-analytics]').forEach(function (element) {
+      element.addEventListener('click', function () {
+        const eventName = element.getAttribute('data-analytics');
+
+        if (typeof gtag === 'function' && eventName) {
+          gtag('event', eventName);
+        }
+      });
+    });
+
+    /* ====================================================
+       2. CONTACT FORM SUBMISSION
+       Tracks when the contact form is submitted.
+       ==================================================== */
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function () {
+        if (typeof gtag === 'function') {
+          gtag('event', 'form_submission');
+        }
+      });
+    }
+
+    /* ====================================================
+       3. SCROLL DEPTH TRACKING
+       Sends events at 25%, 50%, 75%, and 100%.
+       ==================================================== */
+    const scrollMarks = [25, 50, 75, 100];
+    const scrollTracked = new Set();
+
+    function trackScrollDepth() {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      if (docHeight <= 0) return;
+
+      const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+      scrollMarks.forEach(function (mark) {
+        if (scrollPercent >= mark && !scrollTracked.has(mark)) {
+          scrollTracked.add(mark);
 
           if (typeof gtag === 'function') {
-            gtag('event', 'click', {
-              event_category: 'engagement',
-              event_label: label
+            gtag('event', 'scroll_depth', {
+              scroll_percent: mark
+            });
+          }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+    /* ====================================================
+       4. SECTION VIEW TRACKING
+       Sends an event when a section becomes visible.
+       ==================================================== */
+    const seenSections = new Set();
+    const sections = document.querySelectorAll('section[id]');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+
+          const sectionId = entry.target.id;
+          if (seenSections.has(sectionId)) return;
+
+          seenSections.add(sectionId);
+
+          if (typeof gtag === 'function') {
+            gtag('event', 'section_view', {
+              section_name: sectionId
             });
           }
         });
+      }, {
+        threshold: 0.35
       });
 
-      const contactForm = document.getElementById('contact-form');
-
-      if (contactForm) {
-        contactForm.addEventListener('submit', function () {
-          if (typeof gtag === 'function') {
-            gtag('event', 'form_submission', {
-              event_category: 'contact',
-              event_label: 'contact_form'
-            });
-          }
-        });
-      }
-    });
-  </script>
-  <script>
-  // ===============================
-  // SCROLL TRACKING
-  // ===============================
-  let scrollMarks = [25, 50, 75, 100];
-  let scrollTracked = [];
-
-  window.addEventListener('scroll', function () {
-    let scrollTop = window.scrollY;
-    let docHeight = document.body.scrollHeight - window.innerHeight;
-    let scrollPercent = (scrollTop / docHeight) * 100;
-
-    scrollMarks.forEach(function(mark) {
-      if (scrollPercent >= mark && !scrollTracked.includes(mark)) {
-        scrollTracked.push(mark);
-
-        if (typeof gtag === 'function') {
-          gtag('event', 'scroll_depth', {
-            event_category: 'engagement',
-            event_label: mark + '%'
-          });
-        }
-      }
-    });
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+    }
   });
-
-  // ===============================
-  // SECTION VIEW TRACKING
-  // ===============================
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id || 'unknown_section';
-
-        if (typeof gtag === 'function') {
-          gtag('event', 'section_view', {
-            event_category: 'engagement',
-            event_label: id
-          });
-        }
-      }
-    });
-  }, { threshold: 0.5 });
-
-  sections.forEach(section => observer.observe(section));
 </script>
 </body>
 </html>
