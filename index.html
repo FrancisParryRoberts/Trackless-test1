@@ -613,37 +613,47 @@
       }
     }
 
-    @media (max-width: 640px) {
-     .hero-shell {
-  padding-top: 0.5rem;
-  padding-bottom: 4rem;
+   @media (max-width: 640px) {
+  .hero-shell {
+    padding-top: 0.75rem;
+    padding-bottom: 3.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar {
+    margin-bottom: 0.5rem;
+    justify-content: flex-start;
+  }
+
+  .logo img {
+    width: 140px;
+    margin-right: auto;
+  }
+
+  .hero-inner {
+    margin-left: 0;
+    margin-right: auto;
+    margin-top: -1.5rem;
+    max-width: 18rem;
+    text-align: left;
+  }
+
+  .hero-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-subtitle {
+    margin-top: 10rem;
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
 }
-
-.topbar {
-  margin-bottom: 1rem;
-}
-
-.hero-inner {
-  text-align: left;
-  margin-top: -2.5rem;
-  max-width: 32rem;
-}
-
-      .hero-actions {
-        justify-content: flex-start;
-      }
-
-      .legacy-social {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .retreat-card {
-        text-align: left;
-      }
-
-      .contact-form button {
-        justify-self: stretch;
       }
     }
   </style>
