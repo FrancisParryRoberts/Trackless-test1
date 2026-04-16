@@ -744,63 +744,45 @@
        CHALLENGE + DETOX BANNER WRAPPER
        ==================================================== -->
   <div class="trackless-banner-block">
-    <section class="section" id="challenge">
-      <div class="section-inner">
-        <h2>The challenge</h2>
+<div class="trackless-banner-block">
+  <section class="section" id="challenge">
+    <div class="section-inner">
 
-        <p>
-          So you’ve done what they said but there’s still a nagging sense that life could offer more?
-          Perhaps you've already sat on the cushion looking for answers. Maybe you know that you need
-          a reset — some fresh perspective?
-        </p>
+      <h2>Why are you here?</h2>
 
-        <p>
-          Based on research by David Strayer and years of our own experience we realised that what a
-          lot of men today need is to rediscover a sense of meaning and purpose in their often busy and
-          stressful lives – and that an immersive journey in nature of only a few days can help provide that.
-        </p>
+      <p>
+        You’ve done what they said but there’s still a nagging sense that life could offer more?
+        Perhaps you've already sat on the cushion looking for answers? Maybe you know that you need a reset — some fresh perspective?
+      </p>
 
-        <p>
-          But this is not just any old journey, not just a fast-paced hike to the top of a mountain and back –
-          here we deliver a structured and supported experience based on the timeless teachings of Buddhism,
-          modern psychology and anthropological studies of quest and ordeal in defining manhood; presented
-          in a modern way through our own lived appreciation of these things.
-        </p>
-      </div>
-    </section>
+      <p>
+        Our own experience and an emerging body of research shows that an immersive journey in nature of only a few days can help provide this.
+      </p>
 
-    <section class="section" id="detox">
-      <div class="section-inner">
-        <h2>Not just a digital detox!</h2>
+      <h2 style="margin-top:2rem;">The challenge</h2>
 
-        <p>
-          On a Trackless expedition we will guide you through an experience which mirrors an age-old
-          threefold process present in many traditions and cultures but often lost to modern men. Firstly,
-          we invite you to renounce whatever is going on in your life right now – leave the city, leave your
-          job, leave your normal patterns and habits behind for just a few days. At the end of the first
-          evening we ritually and symbolically renounce the world by giving up our electronic devices for the weekend.
-        </p>
-      </div>
-    </section>
-  </div>
+      <p>
+        The experience draws on Buddhist teaching, modern psychological findings, and older forms of quest and ordeal found in many traditions.
+      </p>
 
-  <!-- ====================================================
-       THREEFOLD JOURNEY
-       ==================================================== -->
-  <section class="section" id="process">
+      <p>
+        This is not just a mountain weekend or a digital detox. It is a deliberate shift out of normal patterns and into something more demanding and reflective, a structured journey through inner and outer landscapes split over three days:
+      </p>
+
+    </div>
+  </section>
+
+  <section class="section" id="detox">
     <div class="section-inner">
       <div class="threefold">
+
         <div class="threefold-item">
           <div>
             <h3>Renunciation</h3>
             <p>
-              The following day we will rise early and give instructions on how to deepen your practice
-              of meditation and bring that awareness into movement as we walk. This first day will usually
-              involve a long challenging hike, often summiting a major mountain peak, interspersed with
-              periods of silence and some seated meditation and reflection.
+              The first full day is a long meditative walk, often involving a major summit, with silence and reflection woven through it.
             </p>
           </div>
-
           <div class="threefold-image">
             <img src="renounce.jpg" alt="Renunciation" />
           </div>
@@ -810,13 +792,9 @@
           <div>
             <h3>Quest</h3>
             <p>
-              Day two we will walk again, but this time as well as deepening our meditative awareness we
-              will use the time to develop and connect with our personal quest. After lunch we will fast
-              and hike to a remote mountain top or woodland and spend the night alone with only a bivvy
-              bag to separate us from the elements.
+              On day two we deepen awareness and connect with our personal quest. After lunch we fast, head to a remote place, and spend the night alone under the elements.
             </p>
           </div>
-
           <div class="threefold-image">
             <img src="gal4.jpg" alt="Quest" />
           </div>
@@ -826,18 +804,18 @@
           <div>
             <h3>Return</h3>
             <p>
-              Day three – after a night alone in the wilderness we gather for a shorter, mainly silent
-              walk back to base camp where we will break our fast and come together to reflect on the
-              weekend, discussing our experiences and how we might integrate them back into our daily lives.
+              On the final day we return to base camp, break the fast, and reflect on how we can integrate the experience into daily life.
             </p>
           </div>
-
           <div class="threefold-image">
             <img class="return-image" src="return2.png" alt="Return" />
           </div>
         </div>
+
       </div>
     </div>
+  </section>
+</div>
   </section>
 
   <!-- ====================================================
